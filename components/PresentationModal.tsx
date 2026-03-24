@@ -14,7 +14,10 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
 
   const isQuiz = segment.id === 'quiz';
   const isPurpose = segment.id === 'purpose';
+  const isEnergizer = segment.id === 'energizer';
+  const isKnowledge = segment.id === 'knowledge';
   const purposeVideoUrl = 'https://mnscorp-my.sharepoint.com/:v:/r/personal/andrew_mccourt_mnscorp_net/Documents/AI%20Champions%20Kick%20Off%20-%20Avatar%20Video.mp4?csf=1&web=1&e=FMGbDj';
+  const knowledgeBaseUrl = 'https://mnscorp.sharepoint.com/sites/FinanceAIKnowledgeBase/';
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -266,7 +269,9 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 <div className="flex-1 flex flex-col justify-stretch relative">
                     <div className={`relative z-10 bg-slate-800/20 p-8 md:p-10 rounded-[2.5rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden h-full flex flex-col ${shouldCenterBodyText ? 'justify-center' : 'justify-start'}`}>
                         {listContent ? (
-                          <div className="text-slate-100 text-xl md:text-2xl leading-[1.45] font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4 text-left">
+                          <div className={`text-slate-100 font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4 text-left ${
+                            isEnergizer ? 'text-2xl md:text-4xl leading-[1.18] px-4' : 'text-xl md:text-2xl leading-[1.45]'
+                          }`}>
                             <p>{listContent.intro}:</p>
                             <ul className="mt-4 list-disc pl-8 space-y-4">
                               {listContent.items.map((item, index) => (
@@ -283,13 +288,19 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                               {segment.content || "Standby for incoming transmission..."}
                           </div>
                         )}
-                        {isPurpose && (
+                        {(isPurpose || isKnowledge) && (
                           <div className="mt-8">
                             <button
-                              onClick={() => window.open(purposeVideoUrl, '_blank', 'noopener,noreferrer')}
+                              onClick={() =>
+                                window.open(
+                                  isPurpose ? purposeVideoUrl : knowledgeBaseUrl,
+                                  '_blank',
+                                  'noopener,noreferrer'
+                                )
+                              }
                               className="w-full md:w-auto px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-black text-lg md:text-xl rounded-2xl transition-all shadow-[0_0_25px_rgba(6,182,212,0.35)] uppercase tracking-wide"
                             >
-                              ↗ Open Purpose Video
+                              {isPurpose ? '↗ Open Purpose Video' : '↗ Open Knowledge Base'}
                             </button>
                           </div>
                         )}
