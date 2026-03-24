@@ -330,30 +330,38 @@ const GameView: React.FC = () => {
         ctx.fillStyle = 'rgba(2, 6, 23, 0.85)';
         ctx.fillRect(0, 0, width, height);
 
+        const stackTop = Math.max(40, height * 0.08);
+        let currentY = stackTop;
+
         if (isLogoLoaded && logoImageRef.current) {
-          const maxLogoWidth = Math.min(460, width * 0.4);
+          const maxLogoWidth = Math.min(760, width * 0.62);
           const scale = maxLogoWidth / logoImageRef.current.width;
           const logoWidth = logoImageRef.current.width * scale;
           const logoHeight = logoImageRef.current.height * scale;
+          ctx.imageSmoothingEnabled = true;
+          ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(
             logoImageRef.current,
             width / 2 - logoWidth / 2,
-            height / 2 - 340,
+            currentY,
             logoWidth,
             logoHeight
           );
+          currentY += logoHeight + 48;
         }
 
         ctx.fillStyle = '#22d3ee';
         ctx.font = 'bold 64px sans-serif';
         ctx.textAlign = 'center';
-        ctx.fillText("AI CHAMPIONS: LONDON KICK OFF", width / 2, height / 2 - 40);
+        ctx.fillText("AI CHAMPIONS: LONDON KICK OFF", width / 2, currentY);
+        currentY += 64;
         ctx.font = '28px sans-serif';
         ctx.fillStyle = '#94a3b8';
-        ctx.fillText("W/A/S/D or Arrows: Move & Jump • Collect Icons to Present", width / 2, height / 2 + 50);
+        ctx.fillText("W/A/S/D or Arrows: Move & Jump • Collect Icons to Present", width / 2, currentY);
+        currentY += 58;
         ctx.font = 'bold 24px sans-serif';
         ctx.fillStyle = '#22d3ee';
-        ctx.fillText("CLICK ANYWHERE TO INITIALIZE", width / 2, height / 2 + 120);
+        ctx.fillText("CLICK ANYWHERE TO INITIALIZE", width / 2, currentY);
       }
 
       if (isClosing) {
