@@ -1,4 +1,5 @@
 import { PresentationSegment, Platform, QuizQuestion } from './types';
+import introSlidoQr from './assets/intro-slido-qr.png';
 
 export const SEGMENTS: PresentationSegment[] = [
   {
@@ -7,7 +8,7 @@ export const SEGMENTS: PresentationSegment[] = [
     shortName: "Outline",
     content: "\"We are transforming our people, and they are transforming finance\" Global Finance Director at Meta",
     icon: '📋',
-    imageUrl: "/assets/intro-slido-qr.png"
+    imageUrl: introSlidoQr
   },
   {
     id: 'purpose',
