@@ -264,7 +264,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
 
                 <div className="flex-1 flex flex-col justify-stretch relative">
                     <div className="relative z-10 bg-slate-800/20 p-8 md:p-10 rounded-[2.5rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden h-full flex flex-col justify-start">
-                        {isQuotedContent && (
+                        {isQuotedContent && segment.id !== 'outline' && (
                           <div className="text-cyan-400 text-5xl font-black mb-2 opacity-30 leading-none">“</div>
                         )}
                         {listContent ? (
