@@ -50,6 +50,27 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
 
   const currentQuestion = QUIZ_DATA[currentQuestionIndex];
 
+  const parseNumberedPoints = (text: string) => {
+    const numberedChunks = text.split(/\(\d+\)\s*/).map(chunk => chunk.trim());
+    if (numberedChunks.length < 3) {
+      return null;
+    }
+
+    const intro = numberedChunks[0].replace(/\s*:\s*$/, '');
+    const items = numberedChunks
+      .slice(1)
+      .map(item => item.replace(/^(and\s+)/i, '').replace(/[,.]\s*$/, '').trim())
+      .filter(Boolean);
+
+    if (items.length < 2) {
+      return null;
+    }
+
+    return { intro, items };
+  };
+
+  const listContent = segment.content ? parseNumberedPoints(segment.content) : null;
+
   const renderQuizContent = () => {
     if (quizMode === 'intro') {
       return (
@@ -219,7 +240,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           <div className="flex-1 flex flex-col min-h-0">
             {isQuiz ? renderQuizContent() : showDualPane ? (
               <div className="flex-1 flex flex-col md:flex-row items-stretch gap-10 py-4">
-                <div className={`w-full ${segment.id === 'outline' ? 'md:w-[520px]' : 'md:w-[400px]'} shrink-0 flex flex-col items-center justify-center relative`}>
+                <div className={`w-full ${segment.id === 'outline' ? 'md:w-[480px]' : 'md:w-[340px]'} shrink-0 flex flex-col items-center justify-center relative`}>
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
                         <div className="w-[120%] h-[120%] border-[20px] border-cyan-500/20 rounded-full animate-ping duration-[4s]" />
                     </div>
@@ -238,11 +259,22 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 </div>
 
                 <div className="flex-1 flex flex-col justify-center relative">
-                    <div className="relative z-10 bg-slate-800/20 p-8 md:p-12 rounded-[3rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden">
+                    <div className="relative z-10 bg-slate-800/20 p-10 md:p-14 rounded-[3rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden min-h-[52vh] flex flex-col justify-center">
                         <div className="text-cyan-400 text-6xl font-black mb-4 opacity-30 leading-none">“</div>
-                        <div className="text-slate-100 text-xl md:text-2xl leading-[1.4] whitespace-pre-wrap font-medium italic tracking-tight max-h-[45vh] overflow-y-auto custom-scrollbar-v pr-4">
-                            {segment.content || "Standby for incoming transmission..."}
-                        </div>
+                        {listContent ? (
+                          <div className="text-slate-100 text-xl md:text-2xl leading-[1.45] font-medium tracking-tight max-h-[50vh] overflow-y-auto custom-scrollbar-v pr-4">
+                            <p className="italic">{listContent.intro}:</p>
+                            <ul className="mt-4 list-disc pl-8 space-y-3 italic">
+                              {listContent.items.map((item, index) => (
+                                <li key={`${segment.id}-item-${index}`}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        ) : (
+                          <div className="text-slate-100 text-xl md:text-2xl leading-[1.4] whitespace-pre-wrap font-medium italic tracking-tight max-h-[50vh] overflow-y-auto custom-scrollbar-v pr-4">
+                              {segment.content || "Standby for incoming transmission..."}
+                          </div>
+                        )}
                         {isPurpose && (
                           <div className="mt-8">
                             <button
@@ -258,8 +290,19 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
               </div>
             ) : (
               <div className="flex-1 overflow-y-auto pr-4 custom-scrollbar-v flex items-center justify-center">
-                <div className="text-slate-200 text-3xl md:text-5xl leading-[1.3] whitespace-pre-wrap font-black italic text-center max-w-4xl">
-                  {segment.content || "Standby for incoming transmission..."}
+                <div className="text-slate-200 text-3xl md:text-5xl leading-[1.3] font-black italic text-center max-w-5xl">
+                  {listContent ? (
+                    <div>
+                      <p>{listContent.intro}:</p>
+                      <ul className="mt-6 list-disc text-left pl-12 space-y-4 text-2xl md:text-4xl">
+                        {listContent.items.map((item, index) => (
+                          <li key={`${segment.id}-single-item-${index}`}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ) : (
+                    <span className="whitespace-pre-wrap">{segment.content || "Standby for incoming transmission..."}</span>
+                  )}
                 </div>
               </div>
             )}
