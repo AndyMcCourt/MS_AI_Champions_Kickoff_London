@@ -340,6 +340,7 @@ const GameView: React.FC = () => {
           const scale = maxLogoWidth / logoImageRef.current.width;
           const logoWidth = logoImageRef.current.width * scale;
           logoHeight = logoImageRef.current.height * scale;
+          logoTopY = Math.max(24, (height - logoHeight) / 2);
           ctx.imageSmoothingEnabled = true;
           ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(
@@ -382,9 +383,9 @@ const GameView: React.FC = () => {
         };
 
         const infoPanelStartY = logoHeight
-          ? logoTopY + (logoHeight * 0.75)
+          ? logoTopY + (logoHeight * 0.24)
           : Math.max(height * 0.58, currentY + 16);
-        const infoPanelGap = 74;
+        const infoPanelGap = 62;
 
         drawTextPanel(
           "AI CHAMPIONS: LONDON KICK OFF",
