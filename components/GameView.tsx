@@ -330,7 +330,7 @@ const GameView: React.FC = () => {
         ctx.fillStyle = 'rgba(2, 6, 23, 0.85)';
         ctx.fillRect(0, 0, width, height);
 
-        const stackTop = Math.max(40, height * 0.08);
+        const stackTop = Math.max(36, height * 0.05);
         let currentY = stackTop;
 
         if (isLogoLoaded && logoImageRef.current) {
@@ -347,21 +347,63 @@ const GameView: React.FC = () => {
             logoWidth,
             logoHeight
           );
-          currentY += logoHeight + 48;
+          currentY += logoHeight;
         }
 
-        ctx.fillStyle = '#22d3ee';
-        ctx.font = 'bold 64px sans-serif';
-        ctx.textAlign = 'center';
-        ctx.fillText("AI CHAMPIONS: LONDON KICK OFF", width / 2, currentY);
-        currentY += 64;
-        ctx.font = '28px sans-serif';
-        ctx.fillStyle = '#94a3b8';
-        ctx.fillText("W/A/S/D or Arrows: Move & Jump • Collect Icons to Present", width / 2, currentY);
-        currentY += 58;
-        ctx.font = 'bold 24px sans-serif';
-        ctx.fillStyle = '#22d3ee';
-        ctx.fillText("CLICK ANYWHERE TO INITIALIZE", width / 2, currentY);
+        const drawTextPanel = (
+          text: string,
+          y: number,
+          font: string,
+          textColor: string,
+          bgColor: string
+        ) => {
+          ctx.font = font;
+          ctx.textAlign = 'center';
+          ctx.textBaseline = 'middle';
+
+          const metrics = ctx.measureText(text);
+          const boxWidth = metrics.width + 56;
+          const boxHeight = 62;
+          const boxX = width / 2 - boxWidth / 2;
+          const boxY = y - boxHeight / 2;
+
+          ctx.fillStyle = bgColor;
+          ctx.strokeStyle = 'rgba(34, 211, 238, 0.28)';
+          ctx.lineWidth = 2;
+          ctx.beginPath();
+          ctx.roundRect(boxX, boxY, boxWidth, boxHeight, 14);
+          ctx.fill();
+          ctx.stroke();
+
+          ctx.fillStyle = textColor;
+          ctx.fillText(text, width / 2, y);
+        };
+
+        const infoPanelStartY = Math.max(height * 0.58, currentY + 16);
+        const infoPanelGap = 74;
+
+        drawTextPanel(
+          "AI CHAMPIONS: LONDON KICK OFF",
+          infoPanelStartY,
+          'bold 54px sans-serif',
+          '#22d3ee',
+          'rgba(2, 6, 23, 0.66)'
+        );
+        drawTextPanel(
+          "W/A/S/D or Arrows: Move & Jump • Collect Icons to Present",
+          infoPanelStartY + infoPanelGap,
+          '28px sans-serif',
+          '#cbd5e1',
+          'rgba(2, 6, 23, 0.6)'
+        );
+        drawTextPanel(
+          "CLICK ANYWHERE TO INITIALIZE",
+          infoPanelStartY + (infoPanelGap * 2),
+          'bold 30px sans-serif',
+          '#22d3ee',
+          'rgba(2, 6, 23, 0.66)'
+        );
+
       }
 
       if (isClosing) {
