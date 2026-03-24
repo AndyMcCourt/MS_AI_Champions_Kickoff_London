@@ -30,7 +30,7 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'tools',
     title: "M&S Perspective: AI Tools Available to Finance",
     shortName: "Tools",
-    content: "Overview of the AI tools currently available or under review for Finance, with clear guidance on what champions can self‑serve versus what sits with central teams.",
+    content: "Tools Available:\n\nAI Use Cases:\n- Tier 0 – Personal Copilot Agents\n- Tier 1 – Retrofitting AI into Existing Automation\n- Tier 2 – Advanced/Chained Agents & ML Integration\n- Tier 3 – Enterprise‑Level AI Solutions\n\nExperimentation Deep Dive:\n- Microsoft 365 Copilot\n- Copilot for Power BI\n- Copilot Studio",
     icon: '🛠️',
     imageUrl: "https://picsum.photos/seed/tools/800/800"
   },
