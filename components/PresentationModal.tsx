@@ -217,18 +217,18 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           <div className="flex-1 flex flex-col min-h-0">
             {isQuiz ? renderQuizContent() : showDualPane ? (
               <div className="flex-1 flex flex-col md:flex-row items-stretch gap-10 py-4">
-                <div className="w-full md:w-[400px] shrink-0 flex flex-col items-center justify-center relative">
+                <div className={`w-full ${segment.id === 'outline' ? 'md:w-[520px]' : 'md:w-[400px]'} shrink-0 flex flex-col items-center justify-center relative`}>
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
                         <div className="w-[120%] h-[120%] border-[20px] border-cyan-500/20 rounded-full animate-ping duration-[4s]" />
                     </div>
                     <div className="relative z-10 w-full">
                         <div className="absolute -top-4 -left-2 w-12 h-12 border-t-4 border-l-4 border-cyan-500 animate-pulse" />
                         <div className="absolute -bottom-4 -right-2 w-12 h-12 border-b-4 border-r-4 border-cyan-500 animate-pulse" />
-                        <div className="aspect-square md:w-full rounded-[1.5rem] border-[8px] border-slate-800 overflow-hidden shadow-2xl bg-slate-800">
+                        <div className={`aspect-square md:w-full rounded-[1.5rem] border-[8px] border-slate-800 overflow-hidden shadow-2xl ${segment.id === 'outline' ? 'bg-white p-4' : 'bg-slate-800'}`}>
                             <img 
                                 src={segment.imageUrl} 
                                 alt={segment.title} 
-                                className="w-full h-full object-cover"
+                                className={`w-full h-full ${segment.id === 'outline' ? 'object-contain' : 'object-cover'}`}
                                 referrerPolicy="no-referrer"
                             />
                         </div>

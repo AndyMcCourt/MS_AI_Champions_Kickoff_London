@@ -5,9 +5,9 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'outline',
     title: "Outline of the Day",
     shortName: "Outline",
-    content: "Sets expectations for the session: what will be covered, what won’t, and how the day fits into the wider 6–12 month AI Champions journey.",
+    content: "\"We are transforming our people, and they are transforming finance\" Global Finance Director at Meta",
     icon: '📋',
-    imageUrl: "https://picsum.photos/seed/outline/800/800"
+    imageUrl: "/assets/intro-slido-qr.png"
   },
   {
     id: 'purpose',
