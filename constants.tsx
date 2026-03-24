@@ -14,7 +14,7 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'purpose',
     title: "AI Champions Purpose",
     shortName: "Purpose",
-    content: "Clarifies the role of AI Champions: upskilling themselves, enabling AI in their areas, and helping build a connected Finance AI community.",
+    content: "AI Champions Purpose:\n1) Upskilling and Enablement\n2) Supporting Use‑Case Feasibility\n3) Building a Finance‑Wide AI Knowledge Base",
     icon: '🎯',
     imageUrl: "https://picsum.photos/seed/purpose/800/800"
   },
