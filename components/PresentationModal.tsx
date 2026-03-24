@@ -11,11 +11,21 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
   const [quizMode, setQuizMode] = useState<'intro' | 'question' | 'answer' | 'results'>('intro');
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [totalScore, setTotalScore] = useState(0);
+  const [isPurposeVideoOpen, setIsPurposeVideoOpen] = useState(false);
 
   const isQuiz = segment.id === 'quiz';
+  const isPurpose = segment.id === 'purpose';
+  const purposeVideoUrl = 'https://mnscorp-my.sharepoint.com/:v:/r/personal/andrew_mccourt_mnscorp_net/Documents/AI%20Champions%20Kick%20Off%20-%20Avatar%20Video.mp4?csf=1&web=1&e=FMGbDj';
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.code === 'Escape' && isPurposeVideoOpen) {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsPurposeVideoOpen(false);
+        return;
+      }
+
       if (e.code === 'Enter' || e.code === 'Space') {
         if (!isQuiz || quizMode === 'intro' || quizMode === 'results') {
            if (quizMode !== 'intro' || !isQuiz) {
@@ -29,7 +39,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
 
     window.addEventListener('keydown', handleKeyDown, true);
     return () => window.removeEventListener('keydown', handleKeyDown, true);
-  }, [onClose, isQuiz, quizMode]);
+  }, [onClose, isQuiz, quizMode, isPurposeVideoOpen]);
 
   const startQuiz = () => setQuizMode('question');
   
@@ -241,6 +251,16 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                         <div className="text-slate-100 text-xl md:text-2xl leading-[1.4] whitespace-pre-wrap font-medium italic tracking-tight max-h-[45vh] overflow-y-auto custom-scrollbar-v pr-4">
                             {segment.content || "Standby for incoming transmission..."}
                         </div>
+                        {isPurpose && (
+                          <div className="mt-8">
+                            <button
+                              onClick={() => setIsPurposeVideoOpen(true)}
+                              className="w-full md:w-auto px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-black text-lg md:text-xl rounded-2xl transition-all shadow-[0_0_25px_rgba(6,182,212,0.35)] uppercase tracking-wide"
+                            >
+                              ▶ Play Purpose Video
+                            </button>
+                          </div>
+                        )}
                     </div>
                 </div>
               </div>
@@ -264,6 +284,33 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                     <span className="group-hover:translate-x-3 transition-transform text-4xl">→</span>
                 </button>
             </div>
+        )}
+
+        {isPurpose && isPurposeVideoOpen && (
+          <div className="absolute inset-0 z-[60] bg-black/90 flex items-center justify-center p-6 md:p-12">
+            <div className="w-full max-w-5xl bg-slate-950 border-4 border-cyan-500/60 rounded-3xl overflow-hidden shadow-[0_0_100px_rgba(6,182,212,0.35)]">
+              <div className="flex items-center justify-between px-6 py-4 border-b border-slate-800">
+                <h3 className="text-cyan-400 font-black tracking-wide uppercase text-lg">AI Champions Purpose Video</h3>
+                <button
+                  onClick={() => setIsPurposeVideoOpen(false)}
+                  className="text-white bg-slate-800 hover:bg-slate-700 rounded-lg px-4 py-2 font-bold transition-colors"
+                >
+                  Close ✕
+                </button>
+              </div>
+              <div className="bg-black aspect-video">
+                <video
+                  src={purposeVideoUrl}
+                  controls
+                  autoPlay
+                  className="w-full h-full"
+                  referrerPolicy="no-referrer"
+                >
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+            </div>
+          </div>
         )}
 
         <style>{`
