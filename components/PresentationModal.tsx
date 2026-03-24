@@ -269,7 +269,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                           <div className="text-cyan-400 text-5xl font-black mb-2 opacity-30 leading-none">“</div>
                         )}
                         {listContent ? (
-                          <div className="text-slate-100 text-2xl md:text-3xl leading-[1.45] font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4">
+                          <div className="text-slate-100 text-xl md:text-2xl leading-[1.45] font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4 text-left">
                             <p>{listContent.intro}:</p>
                             <ul className="mt-4 list-disc pl-8 space-y-4">
                               {listContent.items.map((item, index) => (
@@ -280,8 +280,8 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                         ) : (
                           <div className={`text-slate-100 whitespace-pre-wrap font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4 ${
                             shouldCenterBodyText
-                              ? 'flex items-center text-center text-3xl md:text-5xl leading-[1.18] px-4'
-                              : 'text-2xl md:text-3xl leading-[1.42]'
+                              ? 'flex items-center text-left text-2xl md:text-4xl leading-[1.18] px-4'
+                              : 'text-left text-xl md:text-2xl leading-[1.42]'
                           } ${isQuotedContent ? 'italic' : 'not-italic'}`}>
                               {segment.content || "Standby for incoming transmission..."}
                           </div>
