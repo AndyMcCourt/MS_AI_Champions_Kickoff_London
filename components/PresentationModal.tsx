@@ -16,8 +16,10 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
   const isPurpose = segment.id === 'purpose';
   const isEnergizer = segment.id === 'energizer';
   const isKnowledge = segment.id === 'knowledge';
+  const isTools = segment.id === 'tools';
   const purposeVideoUrl = 'https://mnscorp-my.sharepoint.com/:v:/r/personal/andrew_mccourt_mnscorp_net/Documents/AI%20Champions%20Kick%20Off%20-%20Avatar%20Video.mp4?csf=1&web=1&e=FMGbDj';
   const knowledgeBaseUrl = 'https://mnscorp.sharepoint.com/sites/FinanceAIKnowledgeBase/';
+  const toolsDeckUrl = 'https://mnscorp-my.sharepoint.com/:p:/g/personal/andrew_mccourt_mnscorp_net/IQAYDMnQtc06SIUNSRJGbEDfAUdpyOkPIyzrHobcVKpKZQo?e=vDKKbV';
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -288,19 +290,19 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                               {segment.content || "Standby for incoming transmission..."}
                           </div>
                         )}
-                        {(isPurpose || isKnowledge) && (
+                        {(isPurpose || isKnowledge || isTools) && (
                           <div className="mt-8">
                             <button
                               onClick={() =>
                                 window.open(
-                                  isPurpose ? purposeVideoUrl : knowledgeBaseUrl,
+                                  isPurpose ? purposeVideoUrl : isKnowledge ? knowledgeBaseUrl : toolsDeckUrl,
                                   '_blank',
                                   'noopener,noreferrer'
                                 )
                               }
                               className="w-full md:w-auto px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-black text-lg md:text-xl rounded-2xl transition-all shadow-[0_0_25px_rgba(6,182,212,0.35)] uppercase tracking-wide"
                             >
-                              {isPurpose ? '↗ Open Purpose Video' : '↗ Open Knowledge Base'}
+                              {isPurpose ? '↗ Open Purpose Video' : isKnowledge ? '↗ Open Knowledge Base' : '↗ Open Tools Deck'}
                             </button>
                           </div>
                         )}
