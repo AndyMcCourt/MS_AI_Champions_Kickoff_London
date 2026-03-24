@@ -400,7 +400,7 @@ const GameView: React.FC = () => {
 
     animationFrame = requestAnimationFrame(update);
     return () => cancelAnimationFrame(animationFrame);
-  }, [hasStarted, activeSegmentId, visitedSegmentIds, isClosing, isFullyClosed]);
+  }, [hasStarted, activeSegmentId, visitedSegmentIds, isClosing, isFullyClosed, isLogoLoaded]);
 
   const activeSegment = SEGMENTS.find(s => s.id === activeSegmentId);
 
