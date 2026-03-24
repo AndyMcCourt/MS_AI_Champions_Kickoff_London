@@ -70,6 +70,10 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
   };
 
   const listContent = segment.content ? parseNumberedPoints(segment.content) : null;
+  const isQuotedContent =
+    !!segment.content &&
+    ((segment.content.trim().startsWith('"') && segment.content.trim().includes('"', 1)) ||
+      (segment.content.trim().startsWith('“') && segment.content.trim().includes('”')));
 
   const renderQuizContent = () => {
     if (quizMode === 'intro') {
@@ -258,20 +262,22 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                     </div>
                 </div>
 
-                <div className="flex-1 flex flex-col justify-center relative">
-                    <div className="relative z-10 bg-slate-800/20 p-10 md:p-14 rounded-[3rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden min-h-[52vh] flex flex-col justify-center">
-                        <div className="text-cyan-400 text-6xl font-black mb-4 opacity-30 leading-none">“</div>
+                <div className="flex-1 flex flex-col justify-stretch relative">
+                    <div className="relative z-10 bg-slate-800/20 p-8 md:p-10 rounded-[2.5rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden h-full flex flex-col justify-start">
+                        {isQuotedContent && (
+                          <div className="text-cyan-400 text-5xl font-black mb-2 opacity-30 leading-none">“</div>
+                        )}
                         {listContent ? (
-                          <div className="text-slate-100 text-xl md:text-2xl leading-[1.45] font-medium tracking-tight max-h-[50vh] overflow-y-auto custom-scrollbar-v pr-4">
-                            <p className="italic">{listContent.intro}:</p>
-                            <ul className="mt-4 list-disc pl-8 space-y-3 italic">
+                          <div className="text-slate-100 text-2xl md:text-3xl leading-[1.45] font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4">
+                            <p>{listContent.intro}:</p>
+                            <ul className="mt-4 list-disc pl-8 space-y-4">
                               {listContent.items.map((item, index) => (
                                 <li key={`${segment.id}-item-${index}`}>{item}</li>
                               ))}
                             </ul>
                           </div>
                         ) : (
-                          <div className="text-slate-100 text-xl md:text-2xl leading-[1.4] whitespace-pre-wrap font-medium italic tracking-tight max-h-[50vh] overflow-y-auto custom-scrollbar-v pr-4">
+                          <div className={`text-slate-100 text-2xl md:text-3xl leading-[1.42] whitespace-pre-wrap font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4 ${isQuotedContent ? 'italic' : 'not-italic'}`}>
                               {segment.content || "Standby for incoming transmission..."}
                           </div>
                         )}
