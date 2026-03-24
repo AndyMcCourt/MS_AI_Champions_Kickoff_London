@@ -21,7 +21,7 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'energizer',
     title: "AI Energizer",
     shortName: "Energizer",
-    content: "Time to get your groove on!",
+    content: "Ice Breaker: Split into groups and use AI to create a theme song for the AI Champions network. Each group should produce: (1) an overall style prompt (max 1000 characters), (2) full song lyrics, and (3) song instructions embedded in the lyrics using square brackets.",
     icon: '⚡',
     imageUrl: "https://picsum.photos/seed/energizer/800/800"
   },
