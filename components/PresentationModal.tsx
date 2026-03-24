@@ -70,6 +70,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
   };
 
   const listContent = segment.content ? parseNumberedPoints(segment.content) : null;
+  const shouldCenterBodyText = !listContent;
   const isQuotedContent =
     !!segment.content &&
     ((segment.content.trim().startsWith('"') && segment.content.trim().includes('"', 1)) ||
@@ -263,8 +264,8 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                 </div>
 
                 <div className="flex-1 flex flex-col justify-stretch relative">
-                    <div className={`relative z-10 bg-slate-800/20 p-8 md:p-10 rounded-[2.5rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden h-full flex flex-col ${segment.id === 'outline' ? 'justify-center' : 'justify-start'}`}>
-                        {isQuotedContent && segment.id !== 'outline' && (
+                    <div className={`relative z-10 bg-slate-800/20 p-8 md:p-10 rounded-[2.5rem] border-2 border-slate-700/40 backdrop-blur-sm overflow-hidden h-full flex flex-col ${shouldCenterBodyText ? 'justify-center' : 'justify-start'}`}>
+                        {isQuotedContent && (
                           <div className="text-cyan-400 text-5xl font-black mb-2 opacity-30 leading-none">“</div>
                         )}
                         {listContent ? (
@@ -278,8 +279,8 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                           </div>
                         ) : (
                           <div className={`text-slate-100 whitespace-pre-wrap font-semibold tracking-tight h-full overflow-y-auto custom-scrollbar-v pr-4 ${
-                            segment.id === 'outline'
-                              ? 'flex items-center text-center text-3xl md:text-[3.2rem] leading-[1.2] md:leading-[1.15] px-4'
+                            shouldCenterBodyText
+                              ? 'flex items-center text-center text-3xl md:text-5xl leading-[1.18] px-4'
                               : 'text-2xl md:text-3xl leading-[1.42]'
                           } ${isQuotedContent ? 'italic' : 'not-italic'}`}>
                               {segment.content || "Standby for incoming transmission..."}
