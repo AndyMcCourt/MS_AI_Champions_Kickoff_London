@@ -332,22 +332,24 @@ const GameView: React.FC = () => {
 
         const stackTop = Math.max(36, height * 0.05);
         let currentY = stackTop;
+        let logoTopY = stackTop;
+        let logoHeight = 0;
 
         if (isLogoLoaded && logoImageRef.current) {
           const maxLogoWidth = Math.min(760, width * 0.62);
           const scale = maxLogoWidth / logoImageRef.current.width;
           const logoWidth = logoImageRef.current.width * scale;
-          const logoHeight = logoImageRef.current.height * scale;
+          logoHeight = logoImageRef.current.height * scale;
           ctx.imageSmoothingEnabled = true;
           ctx.imageSmoothingQuality = 'high';
           ctx.drawImage(
             logoImageRef.current,
             width / 2 - logoWidth / 2,
-            currentY,
+            logoTopY,
             logoWidth,
             logoHeight
           );
-          currentY += logoHeight;
+          currentY = logoTopY + logoHeight;
         }
 
         const drawTextPanel = (
@@ -379,7 +381,9 @@ const GameView: React.FC = () => {
           ctx.fillText(text, width / 2, y);
         };
 
-        const infoPanelStartY = Math.max(height * 0.58, currentY + 16);
+        const infoPanelStartY = logoHeight
+          ? logoTopY + (logoHeight * 0.75)
+          : Math.max(height * 0.58, currentY + 16);
         const infoPanelGap = 74;
 
         drawTextPanel(
