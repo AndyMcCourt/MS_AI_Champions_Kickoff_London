@@ -3,6 +3,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import { SEGMENTS, GAME_CONFIG, PLATFORMS } from '../constants';
 import { Player, Entity, Platform } from '../types';
 import PresentationModal from './PresentationModal';
+import aiChampionsLogo from '../assets/ai-champions-logo.png';
 
 const GameView: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -11,6 +12,8 @@ const GameView: React.FC = () => {
   const [hasStarted, setHasStarted] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [isFullyClosed, setIsFullyClosed] = useState(false);
+  const logoImageRef = useRef<HTMLImageElement | null>(null);
+  const [isLogoLoaded, setIsLogoLoaded] = useState(false);
 
   // Player state
   const player = useRef<Player>({
@@ -47,6 +50,15 @@ const GameView: React.FC = () => {
     return () => {
       window.removeEventListener('keydown', handleKeyDown);
       window.removeEventListener('keyup', handleKeyUp);
+    };
+  }, []);
+
+  useEffect(() => {
+    const logo = new Image();
+    logo.src = aiChampionsLogo;
+    logo.onload = () => {
+      logoImageRef.current = logo;
+      setIsLogoLoaded(true);
     };
   }, []);
 
@@ -317,6 +329,21 @@ const GameView: React.FC = () => {
       if (!hasStarted) {
         ctx.fillStyle = 'rgba(2, 6, 23, 0.85)';
         ctx.fillRect(0, 0, width, height);
+
+        if (isLogoLoaded && logoImageRef.current) {
+          const maxLogoWidth = Math.min(460, width * 0.4);
+          const scale = maxLogoWidth / logoImageRef.current.width;
+          const logoWidth = logoImageRef.current.width * scale;
+          const logoHeight = logoImageRef.current.height * scale;
+          ctx.drawImage(
+            logoImageRef.current,
+            width / 2 - logoWidth / 2,
+            height / 2 - 340,
+            logoWidth,
+            logoHeight
+          );
+        }
+
         ctx.fillStyle = '#22d3ee';
         ctx.font = 'bold 64px sans-serif';
         ctx.textAlign = 'center';
