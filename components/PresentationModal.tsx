@@ -22,7 +22,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
   const purposeVideoUrl = 'https://mnscorp-my.sharepoint.com/:v:/r/personal/andrew_mccourt_mnscorp_net/Documents/AI%20Champions%20Kick%20Off%20-%20Avatar%20Video.mp4?csf=1&web=1&e=FMGbDj';
   const knowledgeBaseUrl = 'https://mnscorp.sharepoint.com/sites/FinanceAIKnowledgeBase/';
   const toolsDeckUrl = 'https://mnscorp-my.sharepoint.com/:p:/g/personal/andrew_mccourt_mnscorp_net/IQAYDMnQtc06SIUNSRJGbEDfAUdpyOkPIyzrHobcVKpKZQo?e=vDKKbV';
-  const excelChallengeUrl = 'https://mnscorp.sharepoint.com/:x:/r/sites/FinanceAnalyticsCentreofExcellence/Shared%20Documents/Analytics/AI/FHB_after.xlsx';
+  const excelChallengeUrl = 'https://mnscorp.sharepoint.com/:x:/r/sites/FinanceAnalyticsCentreofExcellence/_layouts/15/Doc.aspx?sourcedoc=%7BC7A06B26-876E-4911-A3CB-2F1A5B7D05C9%7D&file=FHB_after.xlsx&action=default&mobileredirect=true';
   const workshopDeckUrl = 'https://mnscorp.sharepoint.com/:p:/r/sites/FinanceAnalyticsCentreofExcellence/Shared%20Documents/Analytics/AI/Use%20Case%20Discovery.pptx';
 
   useEffect(() => {
