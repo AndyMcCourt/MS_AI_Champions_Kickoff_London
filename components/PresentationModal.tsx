@@ -254,7 +254,7 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
           <div className="flex-1 flex flex-col min-h-0">
             {isQuiz ? renderQuizContent() : showDualPane ? (
               <div className="flex-1 flex flex-col md:flex-row items-stretch gap-10 py-4">
-                <div className={`w-full ${segment.id === 'outline' ? 'md:w-[480px]' : 'md:w-[340px]'} shrink-0 flex flex-col items-center justify-center relative`}>
+                <div className={`w-full ${segment.id === 'outline' ? 'md:w-[480px]' : segment.id === 'microsoft' ? 'md:w-[510px]' : 'md:w-[340px]'} shrink-0 flex flex-col items-center justify-center relative`}>
                     <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
                         <div className="w-[120%] h-[120%] border-[20px] border-cyan-500/20 rounded-full animate-ping duration-[4s]" />
                     </div>

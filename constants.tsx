@@ -1,5 +1,6 @@
 import { PresentationSegment, Platform, QuizQuestion } from './types';
 import introSlidoQr from './assets/intro-slido-qr.png';
+import microsoftLedSessionImage from './assets/ms-slide-img.png';
 
 export const SEGMENTS: PresentationSegment[] = [
   {
@@ -48,7 +49,7 @@ export const SEGMENTS: PresentationSegment[] = [
     shortName: "Microsoft",
     content: "Deep dive into Microsoft 365 Copilot, focusing on real finance use cases, Excel, Copilot Chat, and an introduction to agents and copilots.",
     icon: '💻',
-    imageUrl: "https://picsum.photos/seed/microsoft/800/800"
+    imageUrl: microsoftLedSessionImage
   },
   {
     id: 'break',
