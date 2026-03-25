@@ -382,10 +382,10 @@ const GameView: React.FC = () => {
           ctx.fillText(text, width / 2, y);
         };
 
-        const infoPanelStartY = logoHeight
-          ? logoTopY + (logoHeight * 0.24)
-          : Math.max(height * 0.58, currentY + 16);
         const infoPanelGap = 62;
+        const panelStackHeight = infoPanelGap * 2;
+        const centeredStackTop = (height / 2) - (panelStackHeight / 2);
+        const infoPanelStartY = Math.max(120, centeredStackTop);
 
         drawTextPanel(
           "AI CHAMPIONS: LONDON KICK OFF",
