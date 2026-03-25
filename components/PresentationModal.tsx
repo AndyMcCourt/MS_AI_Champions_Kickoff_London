@@ -17,9 +17,11 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
   const isEnergizer = segment.id === 'energizer';
   const isKnowledge = segment.id === 'knowledge';
   const isTools = segment.id === 'tools';
+  const isChallenge = segment.id === 'challenge';
   const purposeVideoUrl = 'https://mnscorp-my.sharepoint.com/:v:/r/personal/andrew_mccourt_mnscorp_net/Documents/AI%20Champions%20Kick%20Off%20-%20Avatar%20Video.mp4?csf=1&web=1&e=FMGbDj';
   const knowledgeBaseUrl = 'https://mnscorp.sharepoint.com/sites/FinanceAIKnowledgeBase/';
   const toolsDeckUrl = 'https://mnscorp-my.sharepoint.com/:p:/g/personal/andrew_mccourt_mnscorp_net/IQAYDMnQtc06SIUNSRJGbEDfAUdpyOkPIyzrHobcVKpKZQo?e=vDKKbV';
+  const excelChallengeUrl = 'https://mnscorp.sharepoint.com/:x:/r/sites/FinanceAnalyticsCentreofExcellence/Shared%20Documents/Analytics/AI/FHB_after.xlsx';
 
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -290,19 +292,19 @@ const PresentationModal: React.FC<PresentationModalProps> = ({ segment, onClose 
                               {segment.content || "Standby for incoming transmission..."}
                           </div>
                         )}
-                        {(isPurpose || isKnowledge || isTools) && (
+                        {(isPurpose || isKnowledge || isTools || isChallenge) && (
                           <div className="mt-8">
                             <button
                               onClick={() =>
                                 window.open(
-                                  isPurpose ? purposeVideoUrl : isKnowledge ? knowledgeBaseUrl : toolsDeckUrl,
+                                  isPurpose ? purposeVideoUrl : isKnowledge ? knowledgeBaseUrl : isTools ? toolsDeckUrl : excelChallengeUrl,
                                   '_blank',
                                   'noopener,noreferrer'
                                 )
                               }
                               className="w-full md:w-auto px-8 py-4 bg-cyan-600 hover:bg-cyan-500 text-white font-black text-lg md:text-xl rounded-2xl transition-all shadow-[0_0_25px_rgba(6,182,212,0.35)] uppercase tracking-wide"
                             >
-                              {isPurpose ? '↗ Open Purpose Video' : isKnowledge ? '↗ Open Knowledge Base' : '↗ Open Tools Deck'}
+                              {isPurpose ? '↗ Open Purpose Video' : isKnowledge ? '↗ Open Knowledge Base' : isTools ? '↗ Open Tools Deck' : '↗ Launch Excel Challenge'}
                             </button>
                           </div>
                         )}
