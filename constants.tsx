@@ -36,9 +36,9 @@ export const SEGMENTS: PresentationSegment[] = [
   },
   {
     id: 'challenge',
-    title: "Quick‑Fire Excel Challenge",
+    title: "Copilot in Excel Challenge",
     shortName: "Challenge",
-    content: "A hands‑on, competitive exercise using Copilot to turn a messy spreadsheet into insights, showcasing practical AI use in everyday finance work.",
+    content: "Requirements\n\n1. Three new columns from Group: Inc/Ex Outlets, Price Type and Channel.\n\n2. Dept column as a combination of Dept Code and Dept Name.\n\n3. Sales Inc VAT summary table for Womenswear and Online only:\n\n\n\n4. Narrative giving top 3 and bottom 3 BUs (vs LY) for Sales Inc VAT, suggesting drivers for\nover/underperformance.",
     icon: '📊',
     imageUrl: "https://picsum.photos/seed/excel/800/800"
   },
