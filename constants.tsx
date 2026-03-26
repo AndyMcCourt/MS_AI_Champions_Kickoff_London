@@ -2,6 +2,7 @@ import { PresentationSegment, Platform, QuizQuestion } from './types';
 import introSlidoQr from './assets/intro-slido-qr.png';
 import microsoftLedSessionImage from './assets/ms-slide-img.png';
 import financeKnowledgeBaseImage from './assets/finance-knowledge-base-img.png';
+import aiChampionsLogo from './assets/ai-champions-logo.png';
 
 export const SEGMENTS: PresentationSegment[] = [
   {
@@ -80,9 +81,9 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'thanks',
     title: "Close & Next Steps",
     shortName: "Close",
-    content: "Wrap‑up of key messages, what happens next, how ideas will be progressed, and what ongoing support champions can expect.",
+    content: "THANK YOU!\n\nWhat’s next:\n1) Regular updates in the Team Space — everyone is expected to contribute. I’m planning to build an automated Copilot newsletter that highlights key discussions.\n2) Monthly “AI Unite” sessions — run on a champion tag-team rota.\n3) Manchester and London “AI drop-in sessions” — initially led by Andy and Alex, with champions increasingly attending and hosting as confidence and maturity grow.",
     icon: '🏁',
-    imageUrl: "https://picsum.photos/seed/finish/800/800"
+    imageUrl: aiChampionsLogo
   }
 ];
 
