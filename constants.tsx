@@ -81,7 +81,7 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'thanks',
     title: "Close & Next Steps",
     shortName: "Close",
-    content: "THANK YOU!\n\nWhat’s next:\n1) Regular updates in the Team Space — everyone is expected to contribute. I’m planning to build an automated Copilot newsletter that highlights key discussions.\n2) Monthly “AI Unite” sessions — run on a champion tag-team rota.\n3) Manchester and London “AI drop-in sessions” — initially led by Andy and Alex, with champions increasingly attending and hosting as confidence and maturity grow.",
+    content: "THANK YOU!\n\nWhat’s next:\n1) Regular updates in the Team Space — everyone is expected to contribute.\n2) Monthly “AI Unite” sessions — run on a champion tag-team rota.\n3) Manchester and London “AI drop-in sessions” — initially led by Andy and Alex, with champions increasingly attending and hosting as confidence and maturity grow.",
     icon: '🏁',
     imageUrl: aiChampionsLogo
   }
