@@ -1,6 +1,7 @@
 import { PresentationSegment, Platform, QuizQuestion } from './types';
 import introSlidoQr from './assets/intro-slido-qr.png';
 import microsoftLedSessionImage from './assets/ms-slide-img.png';
+import financeKnowledgeBaseImage from './assets/finance-knowledge-base-img.png';
 
 export const SEGMENTS: PresentationSegment[] = [
   {
@@ -71,9 +72,9 @@ export const SEGMENTS: PresentationSegment[] = [
     id: 'knowledge',
     title: "Finance AI Knowledge Base Concept",
     shortName: "Knowledge",
-    content: "Introduction to a shared Finance AI knowledge base, with champions contributing documents, guidance, and examples over time.",
+    content: "A centralised, trusted and AI Compatible place for finance knowledge",
     icon: '📚',
-    imageUrl: "https://picsum.photos/seed/knowledge/800/800"
+    imageUrl: financeKnowledgeBaseImage
   },
   {
     id: 'thanks',
